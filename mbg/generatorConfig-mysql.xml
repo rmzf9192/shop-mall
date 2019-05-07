@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<!-- @see http://www.mybatis.org/generator/configreference/xmlconfig.html -->
+<generatorConfiguration>
+
+    <classPathEntry location="${gen.mbg.jar}"/>
+
+    <context id="MySqlDomain" targetRuntime="MyBatis3Simple">
+
+        <!--<plugin type="org.mybatis.generator.plugins.SerializablePlugin"/>-->
+        <plugin type="org.mybatis.generator.plugins.ToStringPlugin"/>
+        <plugin type="com.el.mybatis.plugins.DbCommentPlugin"/>
+        <!--<plugin type="com.el.mybatis.plugins.DbAuditPlugin"/>-->
+
+        <commentGenerator>
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+
+        <jdbcConnection driverClass="${jdbc.driverClassName}"
+                        connectionURL="${jdbc.url}"
+                        userId="${jdbc.username}"
+                        password="${jdbc.password}">
+            <property name="remarks" value="true"/>
+        </jdbcConnection>
+
+        <javaTypeResolver type="${gen.jtresolver}">
+            <property name="forceBigDecimals" value="false"/> <!-- default -->
+        </javaTypeResolver>
+
+        <javaModelGenerator
+                targetPackage="${gen.pkg.domain}"
+                targetProject="${gen.src.dir}/java">
+            <property name="enableSubPackages" value="false"/> <!-- default -->
+        </javaModelGenerator>
+
+        <sqlMapGenerator
+                targetPackage="${gen.pkg.mapper}"
+                targetProject="${gen.src.dir}/resources">
+            <property name="enableSubPackages" value="false"/> <!-- default -->
+        </sqlMapGenerator>
+
+        <javaClientGenerator type="ANNOTATEDMAPPER"
+                             targetPackage="${gen.pkg.mapper}"
+                             targetProject="${gen.src.dir}/java">
+            <property name="enableSubPackages" value="false"/> <!-- default -->
+        </javaClientGenerator>
+
+        <!-- 'S_' tables mappers -->
+        <table tableName="dept" domainObjectName="DeptModel"/>
+        <!--<table tableName="S_API_CONFIG_FIELD" domainObjectName="SApiConfigField"/>
+        <table tableName="S_API_FIELD" domainObjectName="SApiField"/>
+
+
+        <table tableName="S_ROLES" domainObjectName="SRole"/>
+        <table tableName="S_MENUS" domainObjectName="SMenu"/>
+        <table tableName="S_FUNCS" domainObjectName="SFunc"/>
+
+        <table tableName="S_USER_TYPES" domainObjectName="SUserType"/>
+        <table tableName="S_USER_ORGS" domainObjectName="SUserOrg"/>
+
+        <table tableName="S_USERS" domainObjectName="SUser">
+            <generatedKey identity="true" column="${gen.ident.col}" sqlStatement="${gen.ident.sql}"/>
+        </table>
+        <table tableName="S_DATA_AUDITS" domainObjectName="SDataAudit"/>
+        <table tableName="S_USER_AUDITS" domainObjectName="SUserAudit">
+            <generatedKey identity="true" column="${gen.ident.col}" sqlStatement="${gen.ident.sql}"/>
+        </table>
+        <table tableName="S_COUNTERS" domainObjectName="SCounter"/>
+
+        &lt;!&ndash; 'S_DEMO_' tables mappers &ndash;&gt;
+        <table tableName="S_DEMO_MSGS" domainObjectName="SDemoMsg">
+            <generatedKey identity="true" column="${gen.ident.col}" sqlStatement="${gen.ident.sql}"/>
+        </table>
+
+        &lt;!&ndash; run DbSysMapperTest::tbls to generate mappers &ndash;&gt;
+
+        &lt;!&ndash; 'T_' tables mappers &ndash;&gt;
+        <table tableName="T_CUST" domainObjectName="TCustDomain" mapperName="TCustMapper">
+            <generatedKey identity="true" column="${gen.ident.col}" sqlStatement="${gen.ident.sql}"/>
+        </table>
+
+        <table tableName="T_OU" domainObjectName="TOuDomain" mapperName="TOuMapper">
+            <generatedKey identity="true" column="${gen.ident.col}" sqlStatement="${gen.ident.sql}"/>
+        </table>
+
+        <table tableName="T_DEPT" domainObjectName="TDeptDomain" mapperName="TDeptMapper">
+            <generatedKey identity="true" column="${gen.ident.col}" sqlStatement="${gen.ident.sql}"/>
+        </table>
+
+        <table tableName="T_EMP" domainObjectName="TEmpDomain" mapperName="TEmpMapper">
+            <generatedKey identity="true" column="${gen.ident.col}" sqlStatement="${gen.ident.sql}"/>
+        </table>
+
+        <table tableName="T_UDC_TYPE" domainObjectName="TUdcTypeDomain" mapperName="TUdcTypeMapper">
+            <generatedKey identity="true" column="${gen.ident.col}" sqlStatement="${gen.ident.sql}"/>
+        </table>
+
+        <table tableName="T_UDC" domainObjectName="TUdcDomain" mapperName="TUdcMapper">
+            <generatedKey identity="true" column="${gen.ident.col}" sqlStatement="${gen.ident.sql}"/>
+        </table>
+
+        <table tableName="T_ADDRESS" domainObjectName="TAddressDomain" mapperName="TAddressMapper">
+            <generatedKey identity="true" column="${gen.ident.col}" sqlStatement="${gen.ident.sql}"/>
+        </table>
+
+        <table tableName="T_ADDRESS_BOOK" domainObjectName="TAddressBookDomain" mapperName="TAddressBookMapper">
+            <generatedKey identity="true" column="${gen.ident.col}" sqlStatement="${gen.ident.sql}"/>
+        </table>
+
+        <table tableName="T_ATTACH" domainObjectName="TAttachDomain" mapperName="TAttachMapper">
+            <generatedKey identity="true" column="${gen.ident.col}" sqlStatement="${gen.ident.sql}"/>
+        </table>
+
+        <table tableName="T_CAMPAIGN" domainObjectName="TCampaignDomain" mapperName="TCampaignMapper">
+            <generatedKey identity="true" column="${gen.ident.col}" sqlStatement="${gen.ident.sql}"/>
+        </table>
+
+        <table tableName="T_COMPETITOR_ORDER" domainObjectName="TCompetitorOrderDomain"
+               mapperName="TCompetitorOrderMapper">
+            <generatedKey identity="true" column="${gen.ident.col}" sqlStatement="${gen.ident.sql}"/>
+        </table>
+
+        <table tableName="T_COMPETITOR_PROD" domainObjectName="TCompetitorProdDomain"
+               mapperName="TCompetitorProdMapper">
+            <generatedKey identity="true" column="${gen.ident.col}" sqlStatement="${gen.ident.sql}"/>
+        </table>
+
+        <table tableName="T_CONTACT" domainObjectName="TContactDomain" mapperName="TContactMapper">
+            <generatedKey identity="true" column="${gen.ident.col}" sqlStatement="${gen.ident.sql}"/>
+        </table>
+
+        <table tableName="T_CONTACT_ACCESS" domainObjectName="TContactAccessDomain" mapperName="TContactAccessMapper">
+            <generatedKey identity="true" column="${gen.ident.col}" sqlStatement="${gen.ident.sql}"/>
+        </table>
+
+        <table tableName="T_CONTACT_SH" domainObjectName="TContactShDomain" mapperName="TContactShMapper">
+            <generatedKey identity="true" column="${gen.ident.col}" sqlStatement="${gen.ident.sql}"/>
+        </table>
+
+        <table tableName="T_CREDIT_APPLY" domainObjectName="TCreditApplyDomain" mapperName="TCreditApplyMapper">
+            <generatedKey identity="true" column="${gen.ident.col}" sqlStatement="${gen.ident.sql}"/>
+        </table>
+
+        <table tableName="T_CUST_ORG" domainObjectName="TCustOrgDomain" mapperName="TCustOrgMapper">
+            <generatedKey identity="true" column="${gen.ident.col}" sqlStatement="${gen.ident.sql}"/>
+        </table>
+
+        <table tableName="T_CUST_POINT" domainObjectName="TCustPointDomain" mapperName="TCustPointMapper">
+            <generatedKey identity="true" column="${gen.ident.col}" sqlStatement="${gen.ident.sql}"/>
+        </table>
+
+        <table tableName="T_CUST_SUPP" domainObjectName="TCustSuppDomain" mapperName="TCustSuppMapper">
+            <generatedKey identity="true" column="${gen.ident.col}" sqlStatement="${gen.ident.sql}"/>
+        </table>
+
+        <table tableName="T_INQUIRY_ITEM" domainObjectName="TInquiryItemDomain" mapperName="TInquiryItemMapper">
+            <generatedKey identity="true" column="${gen.ident.col}" sqlStatement="${gen.ident.sql}"/>
+        </table>
+
+        <table tableName="T_OPPORTUNITY" domainObjectName="TOpportunityDomain" mapperName="TOpportunityMapper">
+            <generatedKey identity="true" column="${gen.ident.col}" sqlStatement="${gen.ident.sql}"/>
+        </table>
+
+        <table tableName="T_OPPORTUNITY_ITEM" domainObjectName="TOpportunityItemDomain"
+               mapperName="TOpportunityItemMapper">
+            <generatedKey identity="true" column="${gen.ident.col}" sqlStatement="${gen.ident.sql}"/>
+        </table>
+
+        <table tableName="T_QUOTATION" domainObjectName="TQuotationDomain" mapperName="TQuotationMapper">
+            <generatedKey identity="true" column="${gen.ident.col}" sqlStatement="${gen.ident.sql}"/>
+        </table>
+
+        <table tableName="T_QUOTATION_ITEM" domainObjectName="TQuotationItemDomain" mapperName="TQuotationItemMapper">
+            <generatedKey identity="true" column="${gen.ident.col}" sqlStatement="${gen.ident.sql}"/>
+        </table>
+
+        <table tableName="T_SO" domainObjectName="TSoDomain" mapperName="TSoMapper">
+            <generatedKey identity="true" column="${gen.ident.col}" sqlStatement="${gen.ident.sql}"/>
+        </table>
+
+        <table tableName="T_SO_ITEM" domainObjectName="TSoItemDomain" mapperName="TSoItemMapper">
+            <generatedKey identity="true" column="${gen.ident.col}" sqlStatement="${gen.ident.sql}"/>
+        </table>
+
+        <table tableName="T_CUST_DIST" domainObjectName="TCustDistDomain" mapperName="TCustDistMapper">
+            <generatedKey identity="true" column="${gen.ident.col}" sqlStatement="${gen.ident.sql}"/>
+        </table>
+
+        <table tableName="T_LEADS" domainObjectName="TLeadsDomain" mapperName="TLeadsMapper">
+            <generatedKey identity="true" column="${gen.ident.col}" sqlStatement="${gen.ident.sql}"/>
+        </table>
+
+        <table tableName="T_LEADS_DIST" domainObjectName="TLeadsDistDomain" mapperName="TLeadsDistMapper">
+            <generatedKey identity="true" column="${gen.ident.col}" sqlStatement="${gen.ident.sql}"/>
+        </table>
+
+        <table tableName="T_COMPETITOR" domainObjectName="TCompetitorDomain" mapperName="TCompetitorMapper">
+            <generatedKey identity="true" column="${gen.ident.col}" sqlStatement="${gen.ident.sql}"/>
+        </table>
+
+        <table tableName="T_INQUIRY" domainObjectName="TInquiryDomain" mapperName="TInquiryMapper">
+            <generatedKey identity="true" column="${gen.ident.col}" sqlStatement="${gen.ident.sql}"/>
+        </table>
+
+        <table tableName="T_INQUIRY_APPR" domainObjectName="TInquiryApprDomain" mapperName="TInquiryApprMapper">
+            <generatedKey identity="true" column="${gen.ident.col}" sqlStatement="${gen.ident.sql}"/>
+        </table>
+
+        <table tableName="T_CUST_LEVELLOG" domainObjectName="TCustLevellogDomain" mapperName="TCustLevellog Mapper">
+            <generatedKey identity="true" column="${gen.ident.col}" sqlStatement="${gen.ident.sql}"/>
+        </table>
+
+        <table tableName="T_CUST_CREDITLOG" domainObjectName="TCustCreditlogDomain" mapperName="TCustCreditlogMapper">
+            <generatedKey identity="true" column="${gen.ident.col}" sqlStatement="${gen.ident.sql}"/>
+        </table>
+
+        <table tableName="T_CUST_POINTLOG" domainObjectName="TCustPointlogDomain" mapperName="TCustPointlogMapper">
+            <generatedKey identity="true" column="${gen.ident.col}" sqlStatement="${gen.ident.sql}"/>
+        </table>
+
+        <table tableName="T_ITEM_ONSALE" domainObjectName="TItemOnsaleDomain" mapperName="TItemOnsaleMapper">
+            <generatedKey identity="true" column="${gen.ident.col}" sqlStatement="${gen.ident.sql}"/>
+        </table>
+
+        <table tableName="T_CUST_POLICY" domainObjectName="TCustPolicyDomain" mapperName="TCustPolicyMapper">
+            <generatedKey identity="true" column="${gen.ident.col}" sqlStatement="${gen.ident.sql}"/>
+        </table>
+
+        <table tableName="T_LEVEL_DISC" domainObjectName="TLevelDiscDomain" mapperName="TLevelDiscMapper">
+            <generatedKey identity="true" column="${gen.ident.col}" sqlStatement="${gen.ident.sql}"/>
+        </table>-->
+
+
+    </context>
+
+</generatorConfiguration>

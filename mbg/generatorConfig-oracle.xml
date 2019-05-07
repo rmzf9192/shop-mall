@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<!-- @see http://www.mybatis.org/generator/configreference/xmlconfig.html -->
+<generatorConfiguration>
+
+  <classPathEntry location="${gen.mbg.jar}"/>
+
+  <context id="MySqlDomain" targetRuntime="MyBatis3Simple">
+
+    <!--<plugin type="org.mybatis.generator.plugins.SerializablePlugin"/>-->
+    <plugin type="org.mybatis.generator.plugins.ToStringPlugin"/>
+    <plugin type="com.el.mybatis.plugins.DbCommentPlugin"/>
+    <!--<plugin type="com.el.mybatis.plugins.DbAuditPlugin"/>-->
+
+    <commentGenerator>
+      <property name="suppressAllComments" value="true"/>
+    </commentGenerator>
+
+    <jdbcConnection driverClass="${jdbc.driverClassName}"
+                    connectionURL="${jdbc.url}"
+                    userId="${jdbc.username}"
+                    password="${jdbc.password}">
+      <property name="remarks" value="true"/>
+    </jdbcConnection>
+
+    <javaTypeResolver type="${gen.jtresolver}">
+      <property name="forceBigDecimals" value="false"/> <!-- default -->
+    </javaTypeResolver>
+
+    <javaModelGenerator
+      targetPackage="${gen.pkg.domain}"
+      targetProject="${gen.src.dir}/java">
+      <property name="enableSubPackages" value="false"/> <!-- default -->
+    </javaModelGenerator>
+
+    <sqlMapGenerator
+      targetPackage="${gen.pkg.mapper}"
+      targetProject="${gen.src.dir}/resources">
+      <property name="enableSubPackages" value="false"/> <!-- default -->
+    </sqlMapGenerator>
+
+    <javaClientGenerator type="ANNOTATEDMAPPER"
+                         targetPackage="${gen.pkg.mapper}"
+                         targetProject="${gen.src.dir}/java">
+      <property name="enableSubPackages" value="false"/> <!-- default -->
+    </javaClientGenerator>
+
+    <table tableName="T_RIGHTS_TEMPLATE_MENU" domainObjectName="TRightsTemplateMenu">
+      <generatedKey column="ID" sqlStatement="SELECT SEQ_T_RIGHTS_TEMPLATE_MENU.NEXTVAL FROM DUAL"/>
+    </table>
+
+  </context>
+
+</generatorConfiguration>
